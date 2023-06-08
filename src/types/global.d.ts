@@ -9,3 +9,11 @@ interface Window {
   $notification: import('naive-ui').NotificationProviderInst
   isLoading: boolean
 }
+
+type AppMenu = {
+  id: number
+  label: string
+  path: string
+  icon?: string
+  children?: AppMenu[]
+}
