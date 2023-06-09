@@ -18,6 +18,7 @@ declare module '@vue/runtime-core' {
     NCheckbox: typeof import('naive-ui')['NCheckbox']
     NCheckBox: typeof import('naive-ui')['NCheckBox']
     NDialogProvider: typeof import('naive-ui')['NDialogProvider']
+    NDropdown: typeof import('naive-ui')['NDropdown']
     NForm: typeof import('naive-ui')['NForm']
     NFormItem: typeof import('naive-ui')['NFormItem']
     NIcon: typeof import('naive-ui')['NIcon']

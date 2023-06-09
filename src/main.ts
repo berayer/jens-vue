@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import { setupRouter } from '@/router/router'
+import { setupRouter } from '@/router'
 import { setupStore } from '@/store'
 // 静态资源导入
 import './styles/index.css'

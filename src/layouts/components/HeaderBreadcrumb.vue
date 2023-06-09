@@ -1,13 +1,44 @@
 <template>
   <n-breadcrumb>
-    <n-breadcrumb-item>
-      <Icon name="mdi:package-variant-closed" :size="18" /> 北京总行</n-breadcrumb-item
-    >
-    <n-breadcrumb-item>
-      <Icon name="mdi:package-variant-closed" :size="18" /> 天津分行</n-breadcrumb-item
-    >
-    <n-breadcrumb-item>
-      <Icon name="mdi:package-variant-closed" :size="18" /> 平山道支行</n-breadcrumb-item
-    >
+    <n-breadcrumb-item v-for="item in breadcrumbs" :key="item.path">
+      <n-dropdown
+        v-if="item.children"
+        :options="genOptions(item.children)"
+        @select="dropdownSelect"
+      >
+        <span> <Icon :name="item.icon!" :size="18" /> {{ item.label }} </span>
+      </n-dropdown>
+
+      <span v-else><Icon :name="item.icon!" :size="18" /> {{ item.label }}</span>
+    </n-breadcrumb-item>
   </n-breadcrumb>
 </template>
+
+<script setup lang="ts">
+import { useRoute } from 'vue-router'
+import { useTabsStore } from '@/store'
+import type { DropdownOption } from 'naive-ui'
+import Icon from '@/components/Icon.vue'
+import { router } from '@/router'
+
+const route = useRoute()
+const tabsStore = useTabsStore()
+
+const breadcrumbs = computed(() => {
+  return tabsStore.getRouteContext(route.fullPath)
+})
+
+function genOptions(children: AppMenu[]): DropdownOption[] {
+  return children.map((item) => {
+    return {
+      label: item.label,
+      key: item.path,
+      icon: () => h(Icon, { name: item.icon!, size: 18 })
+    }
+  })
+}
+
+function dropdownSelect(key: string) {
+  router.push(key)
+}
+</script>
