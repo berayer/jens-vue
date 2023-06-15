@@ -38,6 +38,12 @@ export const appMenu: AppMenu[] = [
     ]
   },
   {
+    id: 13,
+    label: 'Threejs',
+    icon: 'mdi:star-three-points-outline',
+    path: '/test'
+  },
+  {
     id: 6,
     label: '关于',
     icon: 'mdi:information-outline',
