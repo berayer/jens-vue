@@ -9,8 +9,15 @@ async function setupApp() {
   const app = createApp(App)
   await setupRouter(app)
   setupStore(app)
+  addNaiveMetaStyle()
   app.mount('#app')
 }
 
 // 异步挂载vue实例
 setupApp()
+
+function addNaiveMetaStyle() {
+  const meta = document.createElement('meta')
+  meta.name = 'naive-ui-style'
+  document.head.appendChild(meta)
+}

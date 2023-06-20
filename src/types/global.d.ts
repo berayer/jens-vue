@@ -17,3 +17,7 @@ type AppMenu = {
   icon?: string
   children?: AppMenu[]
 }
+
+type anyObj = {
+  [key: string]: any
+}
