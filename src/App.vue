@@ -19,6 +19,9 @@ const themeOverrides: GlobalThemeOverrides = {
   },
   Card: {
     borderRadius: '16px'
+  },
+  Divider: {
+    color: 'rgb(160 160 160)'
   }
 }
 </script>
