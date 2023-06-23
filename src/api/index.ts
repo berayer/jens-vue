@@ -11,3 +11,18 @@ export function v_login(data: { username: string; password: string; rememberMe: 
     data
   })
 }
+
+export function v_user_list(params: { page: number; size: number }) {
+  return http({
+    url: '/user/search',
+    method: 'get',
+    params
+  })
+}
+
+export function v_index_info() {
+  return http({
+    url: '/index',
+    method: 'get'
+  })
+}

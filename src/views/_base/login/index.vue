@@ -38,6 +38,7 @@
 <script setup lang="ts">
 import { FormRules, FormItemRule, FormInst } from 'naive-ui'
 import { v_login } from '@/api'
+import { router } from '@/router'
 
 // 状态变量
 const state = reactive({
@@ -85,9 +86,13 @@ const loginSubmit = (e: Event) => {
   formRef.value?.validate((errors) => {
     if (!errors) {
       v_login(loginForm).then((res) => {
-        console.log(res)
+        if (res.code == 200) {
+          console.log(res)
+          router.push('/index')
+        }
       })
     }
+    return false
   })
 }
 </script>

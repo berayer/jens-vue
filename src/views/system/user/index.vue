@@ -1,32 +1,16 @@
 <template>
-  <m-table
-    :columns="columns"
-    bordered
-    :data="user_list"
-    :row-key="(row:any) => row.id"
-    :single-line="true"
-    :add-click="addMockData"
-    :on-scroll="wxgd"
-  ></m-table>
+  <m-table></m-table>
 </template>
 
 <script setup lang="ts">
 import type { DataTableColumns } from 'naive-ui'
 import { NSwitch, NButton } from 'naive-ui'
-import { mock_users } from '@/mock'
+import { ApiRequest, DataTable } from '@/utils/MTable'
 
-const user_list = ref([])
 const columns: DataTableColumns = [
   {
     type: 'selection',
     width: 40,
-    align: 'center'
-  },
-  {
-    title: '序号',
-    key: 'no',
-    render: (_row, index) => h('span', index + 1),
-    width: 55,
     align: 'center'
   },
   {
@@ -103,19 +87,15 @@ const columns: DataTableColumns = [
   }
 ]
 
-onMounted(() => {
-  user_list.value = mock_users(20)
-})
+// function loadUsers(page: number) {
+//   v_user_list({ page: page, size: 20 }).then((res) => {
+//     // console.log(res.data.records)
+//     const list = res.data.records as never[]
+//     data.userList.push(...list)
+//   })
+// }
 
-function addMockData() {
-  const d = mock_users(10)
-  d.forEach((e: any) => {
-    user_list.value.push(e)
-  })
-}
-
-function wxgd(e: Event) {
-  const div = e.target as HTMLElement
-  console.log(div.firstChild)
-}
+const userTable = new DataTable(columns, new ApiRequest('/user'))
+provide('m-table', userTable)
+userTable.loadData()
 </script>

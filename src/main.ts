@@ -9,7 +9,7 @@ async function setupApp() {
   const app = createApp(App)
   await setupRouter(app)
   setupStore(app)
-  addNaiveMetaStyle()
+  // addNaiveMetaStyle()
   app.mount('#app')
 }
 
