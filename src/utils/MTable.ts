@@ -5,10 +5,11 @@ import type { DataTableColumns } from 'naive-ui'
 export class DataTable {
   private api: ApiRequest
   columns: DataTableColumns
-  data: any[] = []
-  total = 0
+  data = ref<any[]>([])
+  total = ref(-1)
+  loading = ref(false)
   private params: anyObj = {
-    page: 1,
+    page: 0,
     size: 20
   }
   private isPaging: boolean
@@ -21,20 +22,28 @@ export class DataTable {
 
   // 加载数据
   loadData() {
+    if (this.data.value.length == this.total.value) return
+    console.log(this.params)
+    this.params.page++
+    this.loading.value = true
     this.api
       .search(this.params)
       .then((res) => {
         // 如果是分页数据
         if (this.isPaging) {
-          this.total = res.data.total
-          this.data.push(...res.data.records)
+          this.total.value = res.data.total
+          console.log(res)
+          this.data.value.push(...res.data.records)
         } else {
-          this.data = res.data
-          this.total = this.data.length
+          this.data.value = res.data
+          this.total.value = this.data.value.length
         }
       })
       .catch((err) => {
         console.error(err)
+      })
+      .finally(() => {
+        this.loading.value = false
       })
   }
 }

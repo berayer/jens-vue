@@ -14,6 +14,13 @@ const columns: DataTableColumns = [
     align: 'center'
   },
   {
+    title: '序号',
+    key: 'no',
+    render: (_r, index) => h('span', index),
+    width: 55,
+    align: 'center'
+  },
+  {
     title: '用户名',
     key: 'username',
     align: 'center',

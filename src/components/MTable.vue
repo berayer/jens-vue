@@ -36,7 +36,7 @@
       </div>
       <!-- 右侧菜单组 -->
       <div class="flex flex-1 items-center justify-end space-x-2">
-        <span class="text-xs">行: {{ 300 }}</span>
+        <span class="text-xs">行: {{ mTable.total.value }}</span>
         <n-divider vertical />
 
         <n-button quaternary circle :focusable="false">
@@ -49,9 +49,11 @@
     <!-- 数据表格 -->
     <n-data-table
       :columns="mTable.columns"
-      :data="mTable.data"
+      :data="mTable.data.value"
       :row-key="(row:any) => row.id"
       max-height="720px"
+      :on-scroll="scrollTo"
+      :loading="mTable.loading.value"
     >
     </n-data-table>
   </div>
@@ -59,6 +61,14 @@
 
 <script setup lang="ts">
 import { DataTable } from '@/utils/MTable'
+import { debounce } from 'lodash'
 
 const mTable = inject('m-table') as DataTable
+
+const scrollTo = debounce((e: Event) => {
+  const target = e.target as HTMLElement
+  if (target.scrollHeight - target.offsetHeight - target.scrollTop < 10) {
+    mTable.loadData()
+  }
+}, 200)
 </script>

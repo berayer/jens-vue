@@ -34,8 +34,6 @@ declare module '@vue/runtime-core' {
     NMenu: typeof import('naive-ui')['NMenu']
     NMessageProvider: typeof import('naive-ui')['NMessageProvider']
     NNotificationProvider: typeof import('naive-ui')['NNotificationProvider']
-    NPagination: typeof import('naive-ui')['NPagination']
-    NResult: typeof import('naive-ui')['NResult']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

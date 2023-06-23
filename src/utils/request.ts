@@ -93,7 +93,7 @@ function httpErrorStatusHandle(error: any) {
   if (error.message.includes('Network')) {
     message = window.navigator.onLine ? '服务端异常！' : '您断网了！'
   }
-  window.$notification.error({ content: message })
+  window.$notification.error({ content: message, duration: 2000 })
 }
 
 type ApiResult<T> = {
