@@ -9,6 +9,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    DataTable: typeof import('./../components/DataTable.vue')['default']
     Icon: typeof import('./../components/Icon.vue')['default']
     MTable: typeof import('./../components/MTable.vue')['default']
     NaiveProvider: typeof import('./../components/NaiveProvider.vue')['default']
@@ -33,6 +34,7 @@ declare module '@vue/runtime-core' {
     NLoadingBarProvider: typeof import('naive-ui')['NLoadingBarProvider']
     NMenu: typeof import('naive-ui')['NMenu']
     NMessageProvider: typeof import('naive-ui')['NMessageProvider']
+    NModal: typeof import('naive-ui')['NModal']
     NNotificationProvider: typeof import('naive-ui')['NNotificationProvider']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

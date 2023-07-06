@@ -36,7 +36,7 @@
       </div>
       <!-- 右侧菜单组 -->
       <div class="flex flex-1 items-center justify-end space-x-2">
-        <span class="text-xs">行: {{ mTable.total.value }}</span>
+        <span class="text-xs">行: {{ data.length }}</span>
         <n-divider vertical />
 
         <n-button quaternary circle :focusable="false">
@@ -47,28 +47,24 @@
       </div>
     </div>
     <!-- 数据表格 -->
-    <n-data-table
-      :columns="mTable.columns"
-      :data="mTable.data.value"
-      :row-key="(row:any) => row.id"
-      max-height="720px"
-      :on-scroll="scrollTo"
-      :loading="mTable.loading.value"
-    >
-    </n-data-table>
+    <n-data-table v-bind="$attrs"> </n-data-table>
   </div>
 </template>
 
 <script setup lang="ts">
-import { DataTable } from '@/utils/MTable'
-import { debounce } from 'lodash'
+import { DataTableProps } from 'naive-ui'
+import { useAttrs } from 'vue'
 
-const mTable = inject('m-table') as DataTable
+/**
+ * @description 继承类型会导致TS报错
+ * @link https://github.com/tusen-ai/naive-ui/issues/4810
+ */
+interface Props extends /* @vue-ignore */ DataTableProps {
+  onDeleteSelect?: () => void
+}
 
-const scrollTo = debounce((e: Event) => {
-  const target = e.target as HTMLElement
-  if (target.scrollHeight - target.offsetHeight - target.scrollTop < 100) {
-    mTable.loadData()
-  }
-}, 200)
+defineProps<Props>()
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const data = (useAttrs().data as any[]) || []
 </script>

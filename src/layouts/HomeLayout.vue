@@ -55,6 +55,7 @@ function ohterSkip(): boolean {
     } else {
       router.push({ path: '/404', replace: true })
     }
+    
     return true
   }
   return false

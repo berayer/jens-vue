@@ -26,3 +26,10 @@ export function v_index_info() {
     method: 'get'
   })
 }
+
+export function v_menu_list() {
+  return http({
+    url: '/menu/search',
+    method: 'get'
+  })
+}

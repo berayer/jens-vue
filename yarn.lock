@@ -341,6 +341,11 @@
   resolved "https://registry.npmmirror.com/@types/lodash/-/lodash-4.14.195.tgz#bafc975b252eb6cea78882ce8a7b6bf22a6de632"
   integrity sha512-Hwx9EUgdwf2GLarOjQp5ZH8ZmblzcbTBC2wtQWNKARBSxM9ezRIAUpeDTgoQRAFB0+8CNWXVA9+MaSOzOF3nPg==
 
+"@types/mockjs@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.npmmirror.com/@types/mockjs/-/mockjs-1.0.7.tgz#3a0f1bc3f286ae2891d9592422529268665c88d3"
+  integrity sha512-OCxXz6hEaJOVpRwuJMiVY5a6LtJcih+br9gwB/Q8ooOBikvk5FpBQ31OlNimXo3EqKha1Z7PFBni+q9m+8NCWg==
+
 "@types/node@^20.2.3":
   version "20.2.3"
   resolved "https://registry.npmmirror.com/@types/node/-/node-20.2.3.tgz"
@@ -794,6 +799,11 @@ combined-stream@^1.0.8:
   integrity sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==
   dependencies:
     delayed-stream "~1.0.0"
+
+commander@*:
+  version "11.0.0"
+  resolved "https://registry.npmmirror.com/commander/-/commander-11.0.0.tgz#43e19c25dbedc8256203538e8d7e9346877a6f67"
+  integrity sha512-9HMlXtt/BNoYr8ooyjjNRdIilOTkVJXB+GhxMTtOKwk0R4j4lS4NpjuqmRxroBfnfTSHQIHQB7wryHhXarNjmQ==
 
 commander@^4.0.0:
   version "4.1.1"
@@ -1534,6 +1544,13 @@ mlly@^1.2.0, mlly@^1.2.1:
     pathe "^1.1.0"
     pkg-types "^1.0.3"
     ufo "^1.1.2"
+
+mockjs@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmmirror.com/mockjs/-/mockjs-1.1.0.tgz#e6a0c378e91906dbaff20911cc0273b3c7d75b06"
+  integrity sha512-eQsKcWzIaZzEZ07NuEyO4Nw65g0hdWAyurVol1IPl1gahRwY+svqzfgfey8U8dahLwG44d6/RwEzuK52rSa/JQ==
+  dependencies:
+    commander "*"
 
 ms@2.1.2:
   version "2.1.2"

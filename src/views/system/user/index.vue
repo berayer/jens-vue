@@ -37,8 +37,7 @@ const columns: DataTableColumns = [
   {
     title: '是否启用',
     key: 'enabled',
-    render: (row: anyObj) =>
-      h(NSwitch, { value: row.enabled, onUpdateValue: (v) => (row.enabled = v) }),
+    render: (row: anyObj) => h(NSwitch, { defaultValue: row.enabled, disabled: true }),
     width: 80,
     align: 'center'
   },
@@ -75,16 +74,28 @@ const columns: DataTableColumns = [
   {
     title: '操作',
     key: 'button',
-    render: () =>
+    render: (row) =>
       h('div', [
         h(
           NButton,
-          { size: 'small', quaternary: true, type: 'warning', focusable: false },
+          {
+            size: 'small',
+            quaternary: true,
+            type: 'warning',
+            focusable: false,
+            onClick: () => updateRow(row)
+          },
           { default: () => '修改' }
         ),
         h(
           NButton,
-          { size: 'small', quaternary: true, type: 'error', focusable: false },
+          {
+            size: 'small',
+            quaternary: true,
+            type: 'error',
+            focusable: false,
+            onClick: () => deleteRow(row)
+          },
           { default: () => '删除' }
         )
       ]),
@@ -93,6 +104,22 @@ const columns: DataTableColumns = [
     width: 120
   }
 ]
+
+function updateRow(row: anyObj) {
+  console.log(row)
+}
+
+function deleteRow(row: anyObj) {
+  window.$dialog.warning({
+    title: '警告',
+    content: `确认删除用户: ${row.username}?`,
+    positiveText: '确定',
+    negativeText: '取消',
+    onPositiveClick: () => {
+      console.log('删除成功')
+    }
+  })
+}
 
 // function loadUsers(page: number) {
 //   v_user_list({ page: page, size: 20 }).then((res) => {

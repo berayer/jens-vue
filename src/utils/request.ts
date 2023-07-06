@@ -96,12 +96,14 @@ function httpErrorStatusHandle(error: any) {
   window.$notification.error({ content: message, duration: 2000 })
 }
 
+/** 返回数据类型 */
 type ApiResult<T> = {
   code: number
   msg: string
   data: T
 }
 
+// 请求工具函数
 const api = (config: AxiosRequestConfig) => http<any, ApiResult<any>>(config)
 
 export default api
