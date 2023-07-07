@@ -39,20 +39,30 @@
 
   <div class="p-6"></div>
 
-  <n-row>
-    <n-col :span="12">
+  <n-grid class="text-center" cols="1 800:2" :x-gap="8" :y-gap="12">
+    <n-gi>
       <n-card>
-        <v-chart class="chart" :option="option" style="height: 400px" />
+        <v-chart
+          autoresize
+          :option="option"
+          :update-options="{ lazyUpdate: true }"
+          style="height: 300px"
+        />
       </n-card>
-    </n-col>
-  </n-row>
+    </n-gi>
+
+    <n-gi>
+      <OrderTypeSale />
+    </n-gi>
+  </n-grid>
 
   <div class="p-6"></div>
 </template>
 
 <script setup lang="ts">
 import VChart from 'vue-echarts'
-import { EChartsOption } from 'echarts'
+import type { EChartsOption } from 'echarts'
+import OrderTypeSale from './echarts/OrderTypeSale.vue'
 
 const option = ref<EChartsOption>({
   title: {
