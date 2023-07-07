@@ -4,6 +4,8 @@ import { setupRouter } from '@/router'
 import { setupStore } from '@/store'
 // 静态资源导入
 import './styles/index.css'
+//引入echarts
+import 'echarts'
 
 async function setupApp() {
   const app = createApp(App)
