@@ -1,16 +1,6 @@
 <template>
-  <n-card style="height: 32vh">
-    <v-chart
-      :autoresize="{
-        throttle: 2000,
-        onResize: () => {
-          console.log('aaa')
-        }
-      }"
-      :option="option"
-      :update-options="{ lazyUpdate: true }"
-      style="width: 30vw"
-    />
+  <n-card>
+    <v-chart autoresize :option="option" />
   </n-card>
 </template>
 
@@ -23,7 +13,7 @@ const option = ref<EChartsOption>({
     left: 'center'
   },
   tooltip: {
-    valueFormatter: (value) => `${value}万`
+    valueFormatter: (value) => `${value} (万元)`
   },
   series: [
     {

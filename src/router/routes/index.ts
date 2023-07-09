@@ -6,7 +6,7 @@ import type { RouteRecordRaw } from 'vue-router'
 export const constantRoutes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: '/login'
+    redirect: '/tts'
   },
   {
     path: '/login',
@@ -22,6 +22,10 @@ export const constantRoutes: RouteRecordRaw[] = [
   {
     path: '/403',
     component: () => import('@/views/_base/403/index.vue')
+  },
+  {
+    path: '/tts',
+    component: () => import('@/views/_base/tts/index.vue')
   },
   {
     path: '/404',
