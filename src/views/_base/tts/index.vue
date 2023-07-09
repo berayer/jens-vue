@@ -1,6 +1,6 @@
 <template>
   <div>
-    <n-grid cols="1 xl:2" :x-gap="36" :y-gap="36" responsive="screen">
+    <n-grid cols="1 l:2" :x-gap="36" :y-gap="36" responsive="screen">
       <n-gi>
         <OrderStatus style="height: 300px" />
       </n-gi>

@@ -1,5 +1,5 @@
 <template>
-  <n-grid class="text-center" :x-gap="8" :y-gap="12" cols="1 400:2 800:4">
+  <n-grid class="text-center" :x-gap="8" :y-gap="12" cols="1 s:2 l:4" responsive="screen">
     <n-gi>
       <n-card>
         <n-statistic label="拆单数量" tabular-nums>
@@ -37,21 +37,21 @@
     </n-gi>
   </n-grid>
 
-  <div class="my-6"></div>
+  <div class="my-4"></div>
 
-  <n-grid cols="1 l:2" :x-gap="8" :y-gap="12" responsive="screen">
-    <n-gi>
-      <OrderStatus style="height: 300px" />
-    </n-gi>
+    <n-grid cols="1 l:2" :x-gap="8" :y-gap="12" responsive="screen">
+      <n-gi>
+        <OrderStatus style="height: 300px" />
+      </n-gi>
 
-    <n-gi>
-      <OrderTypeSale style="height: 300px" />
-    </n-gi>
+      <n-gi>
+        <OrderTypeSale style="height: 300px" />
+      </n-gi>
 
-    <n-gi>
-      <MonthSale style="height: 300px" />
-    </n-gi>
-  </n-grid>
+      <n-gi>
+        <MonthSale style="height: 300px" />
+      </n-gi>
+    </n-grid>
 </template>
 
 <script setup lang="ts">
