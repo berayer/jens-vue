@@ -1,13 +1,9 @@
 <template>
-  <data-table :columns="" :data="datas" :row-key="(row) => row.id" />
+  <data-table :columns="columns" :data="datas" :row-key="(row) => row.id" />
 </template>
 
 <script setup lang="ts">
 import { DataTableColumns } from 'naive-ui'
-
-interface MColumns extends DataTableColumns {
-  show?: boolean
-}
 
 const columns = ref<DataTableColumns>([
   {
@@ -15,8 +11,7 @@ const columns = ref<DataTableColumns>([
   },
   {
     key: 'name',
-    title: '角色名称',
-    _show: true
+    title: '角色名称'
   },
   {
     key: 'updateBy',
@@ -33,7 +28,7 @@ const columns = ref<DataTableColumns>([
   {
     key: 'createTime',
     title: '创建时间'
-  },
+  }
 ])
 const datas = ref<anyObj[]>([
   {

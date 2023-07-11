@@ -39,13 +39,43 @@
         <span class="text-xs">行: {{ data.length }}</span>
         <n-divider vertical />
 
-        <n-dropdown trigger="click" :options="columnsOptions">
-          <n-button quaternary circle :focusable="false">
-            <template #icon>
-              <Icon name="mdi:view-grid-outline" :size="18" />
-            </template>
-          </n-button>
-        </n-dropdown>
+        <n-popover trigger="click" placement="bottom" raw :show-arrow="false" style="z-index: 999">
+          <template #trigger>
+            <n-button quaternary circle :focusable="false">
+              <template #icon>
+                <Icon name="mdi:view-grid-outline" :size="18" />
+              </template>
+            </n-button>
+          </template>
+          <div class="bg-white" style="min-width: 156px">
+            <draggable
+              v-model="columnsOptions"
+              class="min-w-fit px-2"
+              v-bind="{
+                animation: 200,
+                group: 'description',
+                disabled: false,
+                ghostClass: 'ghost'
+              }"
+              :component-data="{
+                tag: 'ul',
+                type: 'transition-group',
+                name: 'flip-list'
+              }"
+              item-key="key"
+              handle=".colMove"
+            >
+              <template #item="{ element }">
+                <div class="flex w-full items-center justify-between py-2">
+                  <n-checkbox v-model:checked="element.show" class="mr-4">
+                    <span>{{ element.title }}</span>
+                  </n-checkbox>
+                  <Icon name="mdi:dots-grid" :size="18" class="colMove cursor-move" />
+                </div>
+              </template>
+            </draggable>
+          </div>
+        </n-popover>
       </div>
     </div>
     <!-- 数据表格 -->
@@ -57,6 +87,7 @@
 import { DataTableProps, NCheckbox } from 'naive-ui'
 import { useAttrs } from 'vue'
 import Icon from './Icon.vue'
+import draggable from 'vuedraggable'
 
 /**
  * @description 继承类型会导致TS报错
@@ -72,60 +103,14 @@ const attrs = useAttrs()
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const data = (attrs.data as any[]) || []
 const columns = attrs.columns as any[]
-
-function renderColumnsOption(col: any) {
-  return h(
-    'div',
-    {
-      class: 'px-2 py-1 hover:bg-gray-100 flex items-center justify-between w-full',
-      draggable: true
-    },
-    [
-      h(
-        NCheckbox,
-        {
-          checked: !col.disabled,
-          onUpdateChecked: (value: boolean) => {
-            changeColumns(col.key, value)
-          }
-        },
-        { default: () => col.title }
-      ),
-      h(Icon, { name: 'mdi:menu', class: 'hover:cursor-move' })
-    ]
-  )
-}
-
-// = () => {
-//   return columns
-//     .filter((e) => e.key)
-//     .map((e) => {
-//       return {
-//         key: e.key,
-//         type: 'render',
-//         render: () => renderColumnsOption(e)
-//       }
-//     })
-// }
-
-const columnsOptions: any[] = []
+const columnsOptions = ref<any[]>([])
 for (let i = 0; i < columns.length; i++) {
   if (columns[i].key) {
-    columnsOptions.push({
+    columnsOptions.value.push({
       key: columns[i].key,
-      type: 'render',
-      render: () => renderColumnsOption(columns[i])
+      title: columns[i].title,
+      show: true
     })
   }
 }
-
-function changeColumns(key: string, value: boolean) {
-  for (let i = 0; i < columns.length; i++) {
-    if (columns[i].key == key) {
-      columns[i].disabled = value
-    }
-  }
-}
-
-console.log(columnsOptions)
 </script>
